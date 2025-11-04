@@ -101,6 +101,38 @@
             background: #c0392b;
         }
         
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            color: #7f8c8d;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
         .form-section {
             background: #fafafa;
             padding: 20px;
@@ -118,6 +150,7 @@
         
         .form-group {
             margin-bottom: 15px;
+            position: relative;
         }
         
         label {
@@ -128,18 +161,43 @@
             font-size: 14px;
         }
         
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 10px 12px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
             transition: border-color 0.3s;
+            font-family: inherit;
         }
         
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #3498db;
+        }
+        
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #ddd;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .autocomplete-items div:hover {
+            background-color: #e8f4f8;
         }
         
         .btn {
@@ -177,6 +235,14 @@
             background: #c0392b;
         }
         
+        .btn-warning {
+            background: #f39c12;
+        }
+        
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        
         .items-table {
             width: 100%;
             border-collapse: collapse;
@@ -207,9 +273,12 @@
             background: white;
             border: 1px solid #ddd;
             border-radius: 6px;
-            padding: 40px;
+            padding: 30px;
             margin-top: 25px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .estimate-header {
@@ -268,17 +337,17 @@
         .estimate-table th {
             background: #34495e;
             color: white;
-            padding: 12px;
+            padding: 10px 8px;
             text-align: left;
             border: 1px solid #2c3e50;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 12px;
         }
         
         .estimate-table td {
-            padding: 12px;
+            padding: 10px 8px;
             border: 1px solid #ddd;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         .estimate-table tbody tr:nth-child(even) {
@@ -288,11 +357,11 @@
         .total-section {
             text-align: right;
             margin-top: 25px;
-            padding: 15px 20px;
+            padding: 12px 20px;
             background: #2c3e50;
             color: white;
             border-radius: 4px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
         }
         
@@ -300,8 +369,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 25px;
+            padding: 15px;
             background: #f8f9fa;
             border-radius: 4px;
             border: 1px solid #e0e0e0;
@@ -313,19 +382,19 @@
         
         .qr-text strong {
             color: #2c3e50;
-            font-size: 16px;
+            font-size: 14px;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
         
         .qr-text p {
             color: #7f8c8d;
-            font-size: 13px;
+            font-size: 12px;
         }
         
         .qr-image {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border: 2px solid #ddd;
             border-radius: 4px;
             padding: 5px;
@@ -370,11 +439,61 @@
         
         .footer-note {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 25px;
+            padding-top: 15px;
             border-top: 1px solid #e0e0e0;
             color: #7f8c8d;
-            font-size: 13px;
+            font-size: 12px;
+        }
+        
+        .history-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .history-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-color: #3498db;
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .history-number {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        
+        .history-date {
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        .history-details {
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .history-total {
+            color: #27ae60;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        .history-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
         }
         
         @media (max-width: 768px) {
@@ -405,12 +524,12 @@
             }
             
             .items-table, .estimate-table {
-                font-size: 12px;
+                font-size: 11px;
             }
             
             .items-table th, .items-table td,
             .estimate-table th, .estimate-table td {
-                padding: 8px 6px;
+                padding: 8px 4px;
             }
             
             .btn {
@@ -425,8 +544,17 @@
             }
             
             .qr-image {
-                width: 100px;
-                height: 100px;
+                width: 90px;
+                height: 90px;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+            }
+            
+            .tab {
+                padding: 10px 16px;
+                font-size: 14px;
             }
         }
         
@@ -454,6 +582,21 @@
         
         .file-input-label:hover {
             background: #2980b9;
+        }
+        
+        .business-info {
+            background: #e8f4f8;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .business-info strong {
+            color: #2c3e50;
         }
     </style>
 </head>
@@ -485,81 +628,115 @@
                 <button class="logout-btn" onclick="logout()">Logout</button>
             </div>
             
-            <div class="saved-data" id="savedParties" style="display:none;">
-                <strong>Saved Parties:</strong>
-                <div id="partiesList"></div>
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('create')">Create Estimate</button>
+                <button class="tab" onclick="switchTab('history')">History</button>
+                <button class="tab" onclick="switchTab('settings')">Settings</button>
             </div>
             
-            <div class="form-section">
-                <h3>Party Details</h3>
-                <div class="form-group">
-                    <label>Party Name *</label>
-                    <input type="text" id="partyName" placeholder="Enter party/customer name">
+            <div id="createTab" class="tab-content active">
+                <div class="business-info" id="businessInfo" style="display:none;">
+                    <div>
+                        <strong>Business:</strong> <span id="displayBusinessName"></span>
+                    </div>
+                    <button class="btn" style="margin:0; padding:6px 12px; font-size:12px;" onclick="switchTab('settings')">Change</button>
                 </div>
-                <button class="btn" onclick="saveParty()">Save Party</button>
-            </div>
-            
-            <div class="form-section">
-                <h3>Your Business Details</h3>
-                <div class="form-group">
-                    <label>Business Name *</label>
-                    <input type="text" id="businessName" placeholder="Enter your business name">
-                </div>
-            </div>
-            
-            <div class="form-section">
-                <h3>Add Items</h3>
-                <div class="form-group">
-                    <label>Item Name *</label>
-                    <input type="text" id="itemName" placeholder="Enter item name">
-                </div>
-                <div class="form-group">
-                    <label>Quantity *</label>
-                    <input type="number" id="itemQty" placeholder="Enter quantity" min="1">
-                </div>
-                <div class="form-group">
-                    <label>Price per Unit (₹) *</label>
-                    <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
-                </div>
-                <button class="btn btn-success" onclick="addItem()">Add Item</button>
                 
-                <table class="items-table" id="itemsTable" style="display:none;">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Quantity</th>
-                            <th>Price (₹)</th>
-                            <th>Total (₹)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="itemsBody"></tbody>
-                </table>
+                <div class="form-section">
+                    <h3>Party Details</h3>
+                    <div class="form-group">
+                        <label>Party Name *</label>
+                        <input type="text" id="partyName" placeholder="Start typing..." autocomplete="off">
+                        <div id="partyAutocomplete" class="autocomplete-items"></div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Add Items</h3>
+                    <div class="form-group">
+                        <label>Item Name *</label>
+                        <input type="text" id="itemName" placeholder="Start typing..." autocomplete="off">
+                        <div id="itemAutocomplete" class="autocomplete-items"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity *</label>
+                        <input type="number" id="itemQty" placeholder="Enter quantity" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Price per Unit (₹) *</label>
+                        <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
+                    </div>
+                    <button class="btn btn-success" onclick="addItem()">Add Item</button>
+                    
+                    <table class="items-table" id="itemsTable" style="display:none;">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Price (₹)</th>
+                                <th>Total (₹)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="itemsBody"></tbody>
+                    </table>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Upload Payment QR Code (Optional)</h3>
+                    <div class="file-input-wrapper">
+                        <label class="file-input-label" for="qrUpload">Choose QR Image</label>
+                        <input type="file" id="qrUpload" accept="image/*" onchange="handleQRUpload(event)">
+                    </div>
+                    <div id="qrPreview" style="display:none; margin-top:15px;">
+                        <img id="qrImage" style="max-width:150px; border:2px solid #ddd; border-radius:4px;">
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="generateEstimate()" style="font-size:15px; padding:12px 25px;">Generate Estimate</button>
+                <button class="btn btn-success" onclick="downloadEstimate()" style="font-size:15px; padding:12px 25px; display:none;" id="downloadBtn">Download as Image</button>
+                
+                <div id="estimatePreview" style="display:none;"></div>
             </div>
             
-            <div class="form-section">
-                <h3>Upload Payment QR Code (Optional)</h3>
-                <div class="file-input-wrapper">
-                    <label class="file-input-label" for="qrUpload">Choose QR Image</label>
-                    <input type="file" id="qrUpload" accept="image/*" onchange="handleQRUpload(event)">
-                </div>
-                <div id="qrPreview" style="display:none; margin-top:15px;">
-                    <img id="qrImage" style="max-width:150px; border:2px solid #ddd; border-radius:4px;">
-                </div>
+            <div id="historyTab" class="tab-content">
+                <div id="historyList"></div>
             </div>
             
-            <button class="btn" onclick="generateEstimate()" style="font-size:15px; padding:12px 25px;">Generate Estimate</button>
-            <button class="btn btn-success" onclick="downloadEstimate()" style="font-size:15px; padding:12px 25px; display:none;" id="downloadBtn">Download as Image</button>
-            
-            <div id="estimatePreview" style="display:none;"></div>
+            <div id="settingsTab" class="tab-content">
+                <div class="form-section">
+                    <h3>Business Settings</h3>
+                    <div class="form-group">
+                        <label>Business Name *</label>
+                        <input type="text" id="businessName" placeholder="Enter your business name">
+                    </div>
+                    <div class="form-group">
+                        <label>Business Address</label>
+                        <textarea id="businessAddress" rows="3" placeholder="Enter your business address (optional)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="businessPhone" placeholder="Enter phone number (optional)">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="businessEmail" placeholder="Enter email (optional)">
+                    </div>
+                    <button class="btn btn-success" onclick="saveBusinessSettings()">Save Business Settings</button>
+                </div>
+            </div>
         </div>
     </div>
     
     <script>
         let items = [];
         let qrImageData = null;
+        let currentEstimateId = null;
         let savedParties = JSON.parse(localStorage.getItem('savedParties') || '[]');
         let savedItems = JSON.parse(localStorage.getItem('savedItems') || '[]');
+        let estimates = JSON.parse(localStorage.getItem('estimates') || '[]');
+        let businessSettings = JSON.parse(localStorage.getItem('businessSettings') || '{}');
+        let estimateCounter = parseInt(localStorage.getItem('estimateCounter') || '0');
         
         function simulateGoogleLogin() {
             const email = prompt("Enter your Gmail address:");
@@ -575,7 +752,9 @@
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
             document.getElementById('userEmail').textContent = email;
-            loadSavedData();
+            loadBusinessSettings();
+            setupAutocomplete();
+            loadHistory();
         }
         
         function logout() {
@@ -586,32 +765,99 @@
             qrImageData = null;
         }
         
-        function loadSavedData() {
-            if (savedParties.length > 0) {
-                document.getElementById('savedParties').style.display = 'block';
-                const partiesList = document.getElementById('partiesList');
-                partiesList.innerHTML = savedParties.map(party => 
-                    `<span class="saved-item" onclick="loadParty('${party}')">${party}</span>`
-                ).join('');
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            if (tab === 'create') {
+                document.querySelectorAll('.tab')[0].classList.add('active');
+                document.getElementById('createTab').classList.add('active');
+            } else if (tab === 'history') {
+                document.querySelectorAll('.tab')[1].classList.add('active');
+                document.getElementById('historyTab').classList.add('active');
+                loadHistory();
+            } else if (tab === 'settings') {
+                document.querySelectorAll('.tab')[2].classList.add('active');
+                document.getElementById('settingsTab').classList.add('active');
             }
         }
         
-        function saveParty() {
-            const partyName = document.getElementById('partyName').value.trim();
-            if (!partyName) {
-                alert('Please enter party name');
+        function loadBusinessSettings() {
+            if (businessSettings.name) {
+                document.getElementById('businessInfo').style.display = 'flex';
+                document.getElementById('displayBusinessName').textContent = businessSettings.name;
+                document.getElementById('businessName').value = businessSettings.name;
+                document.getElementById('businessAddress').value = businessSettings.address || '';
+                document.getElementById('businessPhone').value = businessSettings.phone || '';
+                document.getElementById('businessEmail').value = businessSettings.email || '';
+            }
+        }
+        
+        function saveBusinessSettings() {
+            const name = document.getElementById('businessName').value.trim();
+            if (!name) {
+                alert('Please enter business name');
                 return;
             }
-            if (!savedParties.includes(partyName)) {
-                savedParties.push(partyName);
-                localStorage.setItem('savedParties', JSON.stringify(savedParties));
-                loadSavedData();
-                alert('Party saved successfully!');
-            }
+            
+            businessSettings = {
+                name: name,
+                address: document.getElementById('businessAddress').value.trim(),
+                phone: document.getElementById('businessPhone').value.trim(),
+                email: document.getElementById('businessEmail').value.trim()
+            };
+            
+            localStorage.setItem('businessSettings', JSON.stringify(businessSettings));
+            loadBusinessSettings();
+            alert('Business settings saved successfully!');
+            switchTab('create');
         }
         
-        function loadParty(partyName) {
-            document.getElementById('partyName').value = partyName;
+        function setupAutocomplete() {
+            const partyInput = document.getElementById('partyName');
+            const itemInput = document.getElementById('itemName');
+            
+            partyInput.addEventListener('input', function() {
+                showAutocomplete(this, savedParties, 'partyAutocomplete');
+            });
+            
+            itemInput.addEventListener('input', function() {
+                showAutocomplete(this, savedItems, 'itemAutocomplete');
+            });
+        }
+        
+        function showAutocomplete(input, dataArray, containerId) {
+            const container = document.getElementById(containerId);
+            const value = input.value.toLowerCase();
+            
+            container.innerHTML = '';
+            
+            if (!value) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            const matches = dataArray.filter(item => 
+                item.toLowerCase().includes(value)
+            );
+            
+            if (matches.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            matches.forEach(match => {
+                const div = document.createElement('div');
+                div.textContent = match;
+                div.addEventListener('click', function() {
+                    input.value = match;
+                    container.innerHTML = '';
+                    container.style.display = 'none';
+                });
+                container.appendChild(div);
+            });
+            
+            container.style.display = 'block';
         }
         
         function addItem() {
@@ -626,6 +872,11 @@
             
             const total = qty * price;
             items.push({ name, qty, price, total });
+            
+            if (!savedItems.includes(name)) {
+                savedItems.push(name);
+                localStorage.setItem('savedItems', JSON.stringify(savedItems));
+            }
             
             document.getElementById('itemName').value = '';
             document.getElementById('itemQty').value = '';
@@ -675,10 +926,15 @@
         
         function generateEstimate() {
             const partyName = document.getElementById('partyName').value.trim();
-            const businessName = document.getElementById('businessName').value.trim();
             
-            if (!partyName || !businessName) {
-                alert('Please enter party name and business name');
+            if (!businessSettings.name) {
+                alert('Please set up your business details in Settings first');
+                switchTab('settings');
+                return;
+            }
+            
+            if (!partyName) {
+                alert('Please enter party name');
                 return;
             }
             
@@ -687,40 +943,77 @@
                 return;
             }
             
+            if (!savedParties.includes(partyName)) {
+                savedParties.push(partyName);
+                localStorage.setItem('savedParties', JSON.stringify(savedParties));
+            }
+            
             const grandTotal = items.reduce((sum, item) => sum + item.total, 0);
             const estimateDate = new Date().toLocaleDateString('en-IN');
-            const estimateNumber = 'EST-' + Date.now().toString().slice(-6);
+            
+            estimateCounter++;
+            localStorage.setItem('estimateCounter', estimateCounter.toString());
+            const estimateNumber = estimateCounter;
+            
+            currentEstimateId = Date.now();
+            
+            const estimate = {
+                id: currentEstimateId,
+                number: estimateNumber,
+                date: estimateDate,
+                timestamp: new Date().toISOString(),
+                partyName: partyName,
+                businessName: businessSettings.name,
+                businessAddress: businessSettings.address,
+                businessPhone: businessSettings.phone,
+                businessEmail: businessSettings.email,
+                items: [...items],
+                total: grandTotal,
+                qrCode: qrImageData
+            };
+            
+            estimates.unshift(estimate);
+            localStorage.setItem('estimates', JSON.stringify(estimates));
+            
+            displayEstimate(estimate);
+        }
+        
+        function displayEstimate(estimate) {
+            let businessDetails = estimate.businessName;
+            if (estimate.businessAddress) businessDetails += '<br>' + estimate.businessAddress;
+            if (estimate.businessPhone) businessDetails += '<br>Ph: ' + estimate.businessPhone;
+            if (estimate.businessEmail) businessDetails += '<br>' + estimate.businessEmail;
             
             const estimateHTML = `
                 <div class="estimate-preview" id="estimateContent">
                     <div class="estimate-header">
                         <div class="estimate-title">ESTIMATE</div>
-                        <div class="estimate-subtitle">Estimate #${estimateNumber} | Date: ${estimateDate}</div>
+                        <div class="estimate-subtitle">#${estimate.number} | ${estimate.date}</div>
                     </div>
                     
                     <div class="party-section">
                         <div class="party-box">
                             <strong>From</strong>
-                            <div>${businessName}</div>
+                            <div>${businessDetails}</div>
                         </div>
                         <div class="party-box" style="text-align:right;">
                             <strong>To</strong>
-                            <div>${partyName}</div>
+                            <div>${estimate.partyName}</div>
                         </div>
                     </div>
                     
                     <table class="estimate-table">
                         <thead>
                             <tr>
-                                <th style="width:50px;">S.No</th>
+                                <th style="width:40px;">No.</th>
                                 <th>Item Name</th>
-                                <th style="width:100px;">Quantity</th>
-                                <th style="width:120px;">Price (₹)</th>
-                                <th style="width:120px;">Total (₹)</th>
+                                <th style="width:80px;">Qty</th>
+                                <th style="width:100px;">Price (₹)</th>
+                                <th style="width:100px;">Total (₹)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            ${items.map((item, index) => `
+                            ${estimate.items.map((item, index) => `
                                 <tr>
                                     <td>${index + 1}</td>
                                     <td>${item.name}</td>
@@ -733,16 +1026,16 @@
                     </table>
                     
                     <div class="total-section">
-                        GRAND TOTAL: ₹${grandTotal.toFixed(2)}
+                        GRAND TOTAL: ₹${estimate.total.toFixed(2)}
                     </div>
                     
-                    ${qrImageData ? `
+                    ${estimate.qrCode ? `
                         <div class="qr-section">
                             <div class="qr-text">
                                 <strong>Scan to Pay</strong>
-                                <p>Use any UPI app to scan and pay</p>
+                                <p>Use any UPI app</p>
                             </div>
-                            <img src="${qrImageData}" class="qr-image" alt="Payment QR Code">
+                            <img src="${estimate.qrCode}" class="qr-image" alt="Payment QR">
                         </div>
                     ` : ''}
                     
@@ -763,21 +1056,97 @@
             const element = document.getElementById('estimateContent');
             
             html2canvas(element, {
-                scale: 2,
+                scale: 3,
                 backgroundColor: '#ffffff',
                 logging: false,
-                useCORS: true
+                useCORS: true,
+                width: element.scrollWidth,
+                height: element.scrollHeight,
+                windowWidth: element.scrollWidth,
+                windowHeight: element.scrollHeight
             }).then(canvas => {
                 const link = document.createElement('a');
-                const partyName = document.getElementById('partyName').value.trim();
-                const date = new Date().toISOString().split('T')[0];
-                link.download = `Estimate_${partyName}_${date}.png`;
+                const estimate = estimates.find(e => e.id === currentEstimateId);
+                link.download = `Estimate_${estimate.number}_${estimate.partyName}.png`;
                 link.href = canvas.toDataURL('image/png');
                 link.click();
             });
         }
         
-        // Check if user is already logged in
+        function loadHistory() {
+            const historyList = document.getElementById('historyList');
+            
+            if (estimates.length === 0) {
+                historyList.innerHTML = '<p style="text-align:center; color:#7f8c8d; padding:40px;">No estimates yet. Create your first estimate!</p>';
+                return;
+            }
+            
+            historyList.innerHTML = estimates.map(est => `
+                <div class="history-item">
+                    <div class="history-header">
+                        <div class="history-number">Estimate #${est.number}</div>
+                        <div class="history-date">${est.date}</div>
+                    </div>
+                    <div class="history-details">
+                        <strong>Party:</strong> ${est.partyName}<br>
+                        <strong>Items:</strong> ${est.items.length}
+                    </div>
+                    <div class="history-total">Total: ₹${est.total.toFixed(2)}</div>
+                    <div class="history-actions">
+                        <button class="btn" onclick="viewEstimate(${est.id})">View</button>
+                        <button class="btn btn-warning" onclick="editEstimate(${est.id})">Edit</button>
+                        <button class="btn btn-danger" onclick="deleteEstimate(${est.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function viewEstimate(id) {
+            const estimate = estimates.find(e => e.id === id);
+            currentEstimateId = id;
+            switchTab('create');
+            displayEstimate(estimate);
+        }
+        
+        function editEstimate(id) {
+            const estimate = estimates.find(e => e.id === id);
+            
+            document.getElementById('partyName').value = estimate.partyName;
+            items = [...estimate.items];
+            qrImageData = estimate.qrCode;
+            
+            if (qrImageData) {
+                document.getElementById('qrPreview').style.display = 'block';
+                document.getElementById('qrImage').src = qrImageData;
+            }
+            
+            updateItemsTable();
+            
+            estimates = estimates.filter(e => e.id !== id);
+            estimateCounter--;
+            localStorage.setItem('estimates', JSON.stringify(estimates));
+            localStorage.setItem('estimateCounter', estimateCounter.toString());
+            
+            switchTab('create');
+            alert('Estimate loaded for editing. Make changes and generate again.');
+        }
+        
+        function deleteEstimate(id) {
+            if (!confirm('Are you sure you want to delete this estimate?')) return;
+            
+            estimates = estimates.filter(e => e.id !== id);
+            localStorage.setItem('estimates', JSON.stringify(estimates));
+            loadHistory();
+        }
+        
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.form-group')) {
+                document.querySelectorAll('.autocomplete-items').forEach(el => {
+                    el.style.display = 'none';
+                });
+            }
+        });
+        
         window.onload = function() {
             const userEmail = localStorage.getItem('userEmail');
             if (userEmail) {
