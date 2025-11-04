@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Estimate Maker</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .login-section {
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .login-btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .login-btn:hover {
+            background: #357ae8;
+        }
+        
+        .main-content {
+            display: none;
+            padding: 30px;
+        }
+        
+        .user-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .form-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        
+        .btn:hover {
+            background: #5568d3;
+        }
+        
+        .btn-success {
+            background: #28a745;
+        }
+        
+        .btn-success:hover {
+            background: #218838;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+        }
+        
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .items-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .items-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .items-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .estimate-preview {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        .estimate-header {
+            text-align: center;
+            border-bottom: 3px solid #FF9933;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .estimate-title {
+            font-size: 32px;
+            color: #138808;
+            font-weight: bold;
+        }
+        
+        .party-details {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .estimate-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .estimate-table th {
+            background: #FF9933;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .estimate-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .total-section {
+            text-align: right;
+            margin-top: 20px;
+            padding: 15px;
+            background: #138808;
+            color: white;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .qr-section {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+        }
+        
+        .qr-preview {
+            max-width: 200px;
+            margin: 10px auto;
+        }
+        
+        .saved-data {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .saved-item {
+            display: inline-block;
+            background: white;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: 2px solid #667eea;
+        }
+        
+        .saved-item:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .header h1 {
+                font-size: 22px;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .estimate-preview {
+                padding: 15px;
+            }
+            
+            .estimate-title {
+                font-size: 24px;
+            }
+            
+            .items-table, .estimate-table {
+                font-size: 12px;
+            }
+            
+            .items-table th, .items-table td,
+            .estimate-table th, .estimate-table td {
+                padding: 8px 4px;
+            }
+            
+            .btn {
+                padding: 10px 15px;
+                font-size: 12px;
+            }
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+        
+        .file-input-label {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .file-input-label:hover {
+            background: #5568d3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇮🇳 Indian Estimate Maker</h1>
+            <p>Create Professional Estimates with QR Payment</p>
+        </div>
+        
+        <div class="login-section" id="loginSection">
+            <h2 style="margin-bottom: 20px;">Welcome! Please Login</h2>
+            <button class="login-btn" onclick="simulateGoogleLogin()">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Sign in with Google
+            </button>
+        </div>
+        
+        <div class="main-content" id="mainContent">
+            <div class="user-info">
+                <div>
+                    <strong>Logged in as:</strong> <span id="userEmail"></span>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+            
+            <div class="saved-data" id="savedParties" style="display:none;">
+                <strong>Saved Parties:</strong>
+                <div id="partiesList"></div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Party Details</h3>
+                <div class="form-group">
+                    <label>Party Name *</label>
+                    <input type="text" id="partyName" placeholder="Enter party/customer name">
+                </div>
+                <button class="btn" onclick="saveParty()">Save Party</button>
+            </div>
+            
+            <div class="form-section">
+                <h3>Your Business Details</h3>
+                <div class="form-group">
+                    <label>Business Name *</label>
+                    <input type="text" id="businessName" placeholder="Enter your business name">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h3>Add Items</h3>
+                <div class="form-group">
+                    <label>Item Name *</label>
+                    <input type="text" id="itemName" placeholder="Enter item name">
+                </div>
+                <div class="form-group">
+                    <label>Quantity *</label>
+                    <input type="number" id="itemQty" placeholder="Enter quantity" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Price per Unit (₹) *</label>
+                    <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
+                </div>
+                <button class="btn btn-success" onclick="addItem()">Add Item</button>
+                
+                <table class="items-table" id="itemsTable" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Quantity</th>
+                            <th>Price (₹)</th>
+                            <th>Total (₹)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsBody"></tbody>
+                </table>
+            </div>
+            
+            <div class="form-section">
+                <h3>Upload Payment QR Code</h3>
+                <div class="file-input-wrapper">
+                    <label class="file-input-label" for="qrUpload">Choose QR Image</label>
+                    <input type="file" id="qrUpload" accept="image/*" onchange="handleQRUpload(event)">
+                </div>
+                <div id="qrPreview" style="display:none; margin-top:15px;">
+                    <img id="qrImage" style="max-width:200px; border:2px solid #ddd; border-radius:8px;">
+                </div>
+            </div>
+            
+            <button class="btn" onclick="generateEstimate()" style="font-size:16px; padding:15px 30px;">Generate Estimate</button>
+            <button class="btn btn-success" onclick="downloadEstimate()" style="font-size:16px; padding:15px 30px; display:none;" id="downloadBtn">Download as Image</button>
+            
+            <div id="estimatePreview" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <script>
+        let items = [];
+        let qrImageData = null;
+        let savedParties = JSON.parse(localStorage.getItem('savedParties') || '[]');
+        let savedItems = JSON.parse(localStorage.getItem('savedItems') || '[]');
+        
+        function simulateGoogleLogin() {
+            const email = prompt("Enter your Gmail address:");
+            if (email && email.includes('@')) {
+                localStorage.setItem('userEmail', email);
+                showMainContent(email);
+            } else {
+                alert('Please enter a valid email address');
+            }
+        }
+        
+        function showMainContent(email) {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('userEmail').textContent = email;
+            loadSavedData();
+        }
+        
+        function logout() {
+            localStorage.removeItem('userEmail');
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('mainContent').style.display = 'none';
+            items = [];
+            qrImageData = null;
+        }
+        
+        function loadSavedData() {
+            if (savedParties.length > 0) {
+                document.getElementById('savedParties').style.display = 'block';
+                const partiesList = document.getElementById('partiesList');
+                partiesList.innerHTML = savedParties.map(party => 
+                    `<span class="saved-item" onclick="loadParty('${party}')">${party}</span>`
+                ).join('');
+            }
+        }
+        
+        function saveParty() {
+            const partyName = document.getElementById('partyName').value.trim();
+            if (!partyName) {
+                alert('Please enter party name');
+                return;
+            }
+            if (!savedParties.includes(partyName)) {
+                savedParties.push(partyName);
+                localStorage.setItem('savedParties', JSON.stringify(savedParties));
+                loadSavedData();
+                alert('Party saved successfully!');
+            }
+        }
+        
+        function loadParty(partyName) {
+            document.getElementById('partyName').value = partyName;
+        }
+        
+        function addItem() {
+            const name = document.getElementById('itemName').value.trim();
+            const qty = parseFloat(document.getElementById('itemQty').value);
+            const price = parseFloat(document.getElementById('itemPrice').value);
+            
+            if (!name || !qty || !price) {
+                alert('Please fill all item fields');
+                return;
+            }
+            
+            const total = qty * price;
+            items.push({ name, qty, price, total });
+            
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemQty').value = '';
+            document.getElementById('itemPrice').value = '';
+            
+            updateItemsTable();
+        }
+        
+        function updateItemsTable() {
+            const table = document.getElementById('itemsTable');
+            const tbody = document.getElementById('itemsBody');
+            
+            if (items.length === 0) {
+                table.style.display = 'none';
+                return;
+            }
+            
+            table.style.display = 'table';
+            tbody.innerHTML = items.map((item, index) => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.qty}</td>
+                    <td>₹${item.price.toFixed(2)}</td>
+                    <td>₹${item.total.toFixed(2)}</td>
+                    <td><button class="btn btn-danger" onclick="removeItem(${index})">Remove</button></td>
+                </tr>
+            `).join('');
+        }
+        
+        function removeItem(index) {
+            items.splice(index, 1);
+            updateItemsTable();
+        }
+        
+        function handleQRUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    qrImageData = e.target.result;
+                    document.getElementById('qrPreview').style.display = 'block';
+                    document.getElementById('qrImage').src = qrImageData;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function generateEstimate() {
+            const partyName = document.getElementById('partyName').value.trim();
+            const businessName = document.getElementById('businessName').value.trim();
+            
+            if (!partyName || !businessName) {
+                alert('Please enter party name and business name');
+                return;
+            }
+            
+            if (items.length === 0) {
+                alert('Please add at least one item');
+                return;
+            }
+            
+            const grandTotal = items.reduce((sum, item) => sum + item.total, 0);
+            const estimateDate = new Date().toLocaleDateString('en-IN');
+            
+            const estimateHTML = `
+                <div class="estimate-preview" id="estimateContent">
+                    <div class="estimate-header">
+                        <div class="estimate-title">ESTIMATE</div>
+                        <div style="margin-top:10px; color:#666;">Date: ${estimateDate}</div>
+                    </div>
+                    
+                    <div style="display:flex; justify-content:space-between; margin:20px 0;">
+                        <div>
+                            <strong style="color:#138808;">From:</strong><br>
+                            <div style="font-size:18px; margin-top:5px;">${businessName}</div>
+                        </div>
+                        <div style="text-align:right;">
+                            <strong style="color:#138808;">To:</strong><br>
+                            <div style="font-size:18px; margin-top:5px;">${partyName}</div>
+                        </div>
+                    </div>
+                    
+                    <table class="estimate-table">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Price (₹)</th>
+                                <th>Total (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${items.map((item, index) => `
+                                <tr>
+                                    <td>${index + 1}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.qty}</td>
+                                    <td>₹${item.price.toFixed(2)}</td>
+                                    <td>₹${item.total.toFixed(2)}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    
+                    <div class="total-section">
+                        GRAND TOTAL: ₹${grandTotal.toFixed(2)}
+                    </div>
+                    
+                    ${qrImageData ? `
+                        <div class="qr-section">
+                            <strong style="color:#138808; font-size:18px;">Scan to Pay</strong>
+                            <div class="qr-preview">
+                                <img src="${qrImageData}" style="width:100%; border-radius:8px;">
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div style="text-align:center; margin-top:30px; padding-top:20px; border-top:2px solid #ddd; color:#666;">
+                        <p>Thank you for your business!</p>
+                        <p style="margin-top:5px;">🇮🇳 Made in India</p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('estimatePreview').innerHTML = estimateHTML;
+            document.getElementById('estimatePreview').style.display = 'block';
+            document.getElementById('downloadBtn').style.display = 'inline-block';
+            
+            document.getElementById('estimatePreview').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function downloadEstimate() {
+            const element = document.getElementById('estimateContent');
+            
+            html2canvas(element, {
+                scale: 2,
+                backgroundColor: '#ffffff',
+                logging: false,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                const partyName = document.getElementById('partyName').value.trim();
+                const date = new Date().toISOString().split('T')[0];
+                link.download = `Estimate_${partyName}_${date}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+        
+        // Check if user is already logged in
+        window.onload = function() {
+            const userEmail = localStorage.getItem('userEmail');
+            if (userEmail) {
+                showMainContent(userEmail);
+            }
+        };
+    </script>
+</body>
+</html>
