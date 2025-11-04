@@ -280,113 +280,69 @@
         .estimate-preview {
             background: white;
             width: 100%;
-            max-width: 600px;
-            padding: 40px;
+            max-width: 650px;
+            padding: 35px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .estimate-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 40px;
-        }
-        
-        .company-info {
-            flex: 1;
-        }
-        
-        .company-name {
-            font-size: 16px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-        
-        .company-details {
-            font-size: 12px;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .logo-upload {
-            width: 180px;
-            height: 60px;
-            border: 2px dashed #ccc;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-            font-size: 13px;
-            cursor: pointer;
-            background: #f9f9f9;
-        }
-        
-        .logo-image {
-            width: 180px;
-            height: 60px;
-            object-fit: contain;
-            border-radius: 4px;
-        }
-        
-        .estimate-title-section {
-            text-align: right;
+        .estimate-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #5a9e8c;
+            letter-spacing: 4px;
+            text-align: center;
             margin-bottom: 30px;
         }
         
-        .estimate-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #5a9e8c;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
-        
         .estimate-meta {
-            display: inline-block;
-            text-align: left;
+            text-align: center;
+            margin-bottom: 35px;
         }
         
         .meta-row {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 13px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
         }
         
         .meta-label {
             color: #5a9e8c;
             font-weight: 600;
-            margin-right: 30px;
+            margin-right: 40px;
+            min-width: 120px;
+            text-align: right;
         }
         
         .meta-value {
             color: #333;
-            text-align: right;
+            text-align: left;
+            min-width: 120px;
         }
         
         .customer-section {
             margin-bottom: 30px;
+            text-align: center;
         }
         
         .section-label {
-            font-size: 11px;
+            font-size: 12px;
             color: #5a9e8c;
             font-weight: 600;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         .customer-name {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             color: #2c3e50;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
         
         .customer-details {
-            font-size: 12px;
+            font-size: 13px;
             color: #666;
             line-height: 1.5;
         }
@@ -403,31 +359,36 @@
         }
         
         .items-table-estimate th {
-            padding: 12px 10px;
+            padding: 12px 8px;
             text-align: left;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
         }
         
         .items-table-estimate th:first-child {
-            width: 60px;
+            width: 80px;
+            text-align: center;
         }
         
         .items-table-estimate th:nth-child(3) {
-            width: 100px;
+            width: 110px;
             text-align: right;
         }
         
         .items-table-estimate th:nth-child(4) {
-            width: 100px;
+            width: 110px;
             text-align: right;
         }
         
         .items-table-estimate td {
-            padding: 12px 10px;
+            padding: 12px 8px;
             border-bottom: 1px solid #e8e8e8;
             font-size: 13px;
             color: #333;
+        }
+        
+        .items-table-estimate td:first-child {
+            text-align: center;
         }
         
         .items-table-estimate td:nth-child(3),
@@ -440,20 +401,20 @@
         }
         
         .totals-section {
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
         }
         
         .totals-table {
-            width: 280px;
+            width: 350px;
         }
         
         .total-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            font-size: 13px;
+            padding: 10px 0;
+            font-size: 14px;
         }
         
         .total-row.subtotal {
@@ -462,10 +423,10 @@
         
         .total-row.grand-total {
             background: #f5f5f5;
-            padding: 12px 15px;
-            margin-top: 5px;
+            padding: 14px 20px;
+            margin-top: 8px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
             color: #2c3e50;
         }
         
@@ -484,61 +445,28 @@
         }
         
         .qr-payment-section {
-            margin-top: 30px;
+            margin-top: 35px;
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             background: #f9f9f9;
-            border-radius: 4px;
+            border-radius: 6px;
         }
         
         .qr-title {
-            font-size: 13px;
+            font-size: 14px;
             color: #5a9e8c;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
         
         .qr-code-image {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             margin: 0 auto;
             border: 2px solid #e0e0e0;
-            border-radius: 4px;
-            padding: 8px;
+            border-radius: 6px;
+            padding: 10px;
             background: white;
-        }
-        
-        .terms-section {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e8e8e8;
-        }
-        
-        .terms-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        
-        .terms-content {
-            font-size: 11px;
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        .signature-section {
-            margin-top: 40px;
-            text-align: right;
-        }
-        
-        .signature-line {
-            width: 200px;
-            border-top: 1px solid #999;
-            margin-left: auto;
-            padding-top: 8px;
-            font-size: 11px;
-            color: #999;
         }
         
         .qr-preview {
@@ -642,30 +570,39 @@
             }
             
             .estimate-preview {
-                padding: 25px;
+                padding: 25px 20px;
             }
             
             .estimate-title {
-                font-size: 26px;
+                font-size: 28px;
             }
             
-            .estimate-top {
-                flex-direction: column;
-                gap: 20px;
+            .meta-label {
+                min-width: 100px;
+                margin-right: 20px;
             }
             
-            .logo-upload, .logo-image {
-                width: 150px;
-                height: 50px;
+            .meta-value {
+                min-width: 100px;
             }
             
             .items-table, .items-table-estimate {
                 font-size: 11px;
             }
             
+            .items-table-estimate th,
+            .items-table-estimate td {
+                padding: 10px 5px;
+            }
+            
             .btn {
                 padding: 10px 15px;
                 font-size: 13px;
+            }
+            
+            .qr-code-image {
+                width: 130px;
+                height: 130px;
             }
             
             .tabs {
@@ -675,6 +612,10 @@
             .tab {
                 padding: 10px 16px;
                 font-size: 14px;
+            }
+            
+            .totals-table {
+                width: 100%;
             }
         }
         
@@ -817,17 +758,6 @@
                     </div>
                 </div>
                 
-                <div class="form-section">
-                    <h3>Upload Logo (Optional)</h3>
-                    <div class="file-input-wrapper">
-                        <label class="file-input-label" for="logoUpload">Choose Logo</label>
-                        <input type="file" id="logoUpload" accept="image/*" onchange="handleLogoUpload(event)">
-                    </div>
-                    <div id="logoPreview" style="display:none; margin-top:15px;">
-                        <img id="logoImage" style="max-width:180px; max-height:60px; border:2px solid #ddd; border-radius:4px;">
-                    </div>
-                </div>
-                
                 <button class="btn" onclick="generateEstimate()" style="font-size:15px; padding:12px 25px;">Generate Estimate</button>
                 <button class="btn btn-success" onclick="downloadEstimate()" style="font-size:15px; padding:12px 25px; display:none;" id="downloadBtn">Download as Image</button>
                 
@@ -866,7 +796,6 @@
     <script>
         let items = [];
         let qrImageData = null;
-        let logoImageData = null;
         let currentEstimateId = null;
         let savedParties = JSON.parse(localStorage.getItem('savedParties') || '[]');
         let savedItems = JSON.parse(localStorage.getItem('savedItems') || '[]');
@@ -899,7 +828,6 @@
             document.getElementById('mainContent').style.display = 'none';
             items = [];
             qrImageData = null;
-            logoImageData = null;
         }
         
         function switchTab(tab) {
@@ -1061,19 +989,6 @@
             }
         }
         
-        function handleLogoUpload(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    logoImageData = e.target.result;
-                    document.getElementById('logoPreview').style.display = 'block';
-                    document.getElementById('logoImage').src = logoImageData;
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-        
         function generateEstimate() {
             const partyName = document.getElementById('partyName').value.trim();
             const partyAddress = document.getElementById('partyAddress').value.trim();
@@ -1125,8 +1040,7 @@
                 items: [...items],
                 subtotal: subtotal,
                 total: grandTotal,
-                qrCode: qrImageData,
-                logo: logoImageData
+                qrCode: qrImageData
             };
             
             estimates.unshift(estimate);
@@ -1136,47 +1050,32 @@
         }
         
         function displayEstimate(estimate) {
-            let companyDetails = '';
-            if (estimate.businessAddress) companyDetails += estimate.businessAddress + '<br>';
-            if (estimate.businessPhone) companyDetails += estimate.businessPhone + '<br>';
-            if (estimate.businessEmail) companyDetails += estimate.businessEmail;
-            
-            let customerDetails = '';
-            if (estimate.partyAddress) customerDetails = estimate.partyAddress;
+            let customerDetails = estimate.partyName;
+            if (estimate.partyAddress) customerDetails += '<br>' + estimate.partyAddress;
             
             const estimateHTML = `
                 <div class="estimate-preview-wrapper">
                     <div class="estimate-preview" id="estimateContent">
-                        <div class="estimate-top">
-                            <div class="company-info">
-                                <div class="company-name">${estimate.businessName}</div>
-                                <div class="company-details">${companyDetails}</div>
-                            </div>
-                            ${estimate.logo ? `<img src="${estimate.logo}" class="logo-image" alt="Logo">` : '<div class="logo-upload">Upload Logo</div>'}
-                        </div>
+                        <div class="estimate-title">ESTIMATE</div>
                         
-                        <div class="estimate-title-section">
-                            <div class="estimate-title">ESTIMATE</div>
-                            <div class="estimate-meta">
-                                <div class="meta-row">
-                                    <span class="meta-label">Estimate #</span>
-                                    <span class="meta-value">${estimate.number}</span>
-                                </div>
-                                <div class="meta-row">
-                                    <span class="meta-label">Estimate date</span>
-                                    <span class="meta-value">${estimate.date}</span>
-                                </div>
-                                <div class="meta-row">
-                                    <span class="meta-label">Due date</span>
-                                    <span class="meta-value">${estimate.dueDate}</span>
-                                </div>
+                        <div class="estimate-meta">
+                            <div class="meta-row">
+                                <span class="meta-label">Estimate #</span>
+                                <span class="meta-value">${estimate.number}</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Estimate date</span>
+                                <span class="meta-value">${estimate.date}</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Due date</span>
+                                <span class="meta-value">${estimate.dueDate}</span>
                             </div>
                         </div>
                         
                         <div class="customer-section">
-                            <div class="section-label">To</div>
-                            <div class="customer-name">${estimate.partyName}</div>
-                            ${customerDetails ? `<div class="customer-details">${customerDetails}</div>` : ''}
+                            <div class="section-label">TO</div>
+                            <div class="customer-name">${customerDetails}</div>
                         </div>
                         
                         <table class="items-table-estimate">
@@ -1219,18 +1118,6 @@
                                 <img src="${estimate.qrCode}" class="qr-code-image" alt="Payment QR">
                             </div>
                         ` : ''}
-                        
-                        <div class="terms-section">
-                            <div class="terms-title">Terms and Conditions</div>
-                            <div class="terms-content">
-                                Payment is due in 14 days<br>
-                                Please make checks payable to: ${estimate.businessName}
-                            </div>
-                        </div>
-                        
-                        <div class="signature-section">
-                            <div class="signature-line">customer signature</div>
-                        </div>
                     </div>
                 </div>
             `;
@@ -1251,8 +1138,8 @@
                 logging: false,
                 useCORS: true,
                 allowTaint: true,
-                width: element.offsetWidth,
-                height: element.offsetHeight
+                width: element.scrollWidth,
+                height: element.scrollHeight
             }).then(canvas => {
                 const link = document.createElement('a');
                 const estimate = estimates.find(e => e.id === currentEstimateId);
@@ -1304,16 +1191,10 @@
             document.getElementById('partyAddress').value = estimate.partyAddress || '';
             items = [...estimate.items];
             qrImageData = estimate.qrCode;
-            logoImageData = estimate.logo;
             
             if (qrImageData) {
                 document.getElementById('qrPreview').style.display = 'block';
                 document.getElementById('qrImage').src = qrImageData;
-            }
-            
-            if (logoImageData) {
-                document.getElementById('logoPreview').style.display = 'block';
-                document.getElementById('logoImage').src = logoImageData;
             }
             
             updateItemsTable();
