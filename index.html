@@ -15,7 +15,7 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #f5f5f5;
             min-height: 100vh;
             padding: 20px;
         }
@@ -24,21 +24,27 @@
             max-width: 900px;
             margin: 0 auto;
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+            background: #2c3e50;
             color: white;
-            padding: 30px;
-            text-align: center;
+            padding: 25px 30px;
+            border-bottom: 3px solid #3498db;
         }
         
         .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
         }
         
         .login-section {
@@ -52,11 +58,12 @@
             border: none;
             padding: 15px 30px;
             font-size: 16px;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            transition: background 0.3s;
         }
         
         .login-btn:hover {
@@ -70,28 +77,43 @@
         
         .user-info {
             background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-left: 4px solid #3498db;
         }
         
         .logout-btn {
-            background: #dc3545;
+            background: #e74c3c;
             color: white;
             border: none;
             padding: 8px 16px;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #c0392b;
         }
         
         .form-section {
-            background: #f8f9fa;
+            background: #fafafa;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 6px;
             margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
         }
         
         .form-group {
@@ -100,68 +122,81 @@
         
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #333;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #555;
+            font-size: 14px;
         }
         
         input, select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             font-size: 14px;
+            transition: border-color 0.3s;
         }
         
         input:focus, select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #3498db;
         }
         
         .btn {
-            background: #667eea;
+            background: #3498db;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
             margin-right: 10px;
             margin-top: 10px;
+            transition: background 0.3s;
         }
         
         .btn:hover {
-            background: #5568d3;
+            background: #2980b9;
         }
         
         .btn-success {
-            background: #28a745;
+            background: #27ae60;
         }
         
         .btn-success:hover {
-            background: #218838;
+            background: #229954;
         }
         
         .btn-danger {
-            background: #dc3545;
+            background: #e74c3c;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
         }
         
         .items-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            background: white;
         }
         
         .items-table th {
-            background: #667eea;
+            background: #34495e;
             color: white;
-            padding: 12px;
+            padding: 10px;
             text-align: left;
+            font-weight: 500;
+            font-size: 13px;
         }
         
         .items-table td {
             padding: 10px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
         }
         
         .items-table tr:hover {
@@ -170,95 +205,176 @@
         
         .estimate-preview {
             background: white;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            padding: 30px;
-            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 40px;
+            margin-top: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
         .estimate-header {
             text-align: center;
-            border-bottom: 3px solid #FF9933;
+            border-bottom: 2px solid #2c3e50;
             padding-bottom: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .estimate-title {
-            font-size: 32px;
-            color: #138808;
-            font-weight: bold;
+            font-size: 28px;
+            color: #2c3e50;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
         
-        .party-details {
-            margin: 20px 0;
-            padding: 15px;
+        .estimate-subtitle {
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        
+        .party-section {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+            padding: 20px;
             background: #f8f9fa;
-            border-radius: 8px;
+            border-radius: 4px;
+        }
+        
+        .party-box {
+            flex: 1;
+        }
+        
+        .party-box strong {
+            color: #2c3e50;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .party-box div {
+            font-size: 16px;
+            margin-top: 8px;
+            color: #34495e;
+            font-weight: 500;
         }
         
         .estimate-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin: 25px 0;
         }
         
         .estimate-table th {
-            background: #FF9933;
+            background: #34495e;
             color: white;
             padding: 12px;
             text-align: left;
-            border: 1px solid #ddd;
+            border: 1px solid #2c3e50;
+            font-weight: 500;
+            font-size: 13px;
         }
         
         .estimate-table td {
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        
+        .estimate-table tbody tr:nth-child(even) {
+            background: #f8f9fa;
         }
         
         .total-section {
             text-align: right;
-            margin-top: 20px;
-            padding: 15px;
-            background: #138808;
+            margin-top: 25px;
+            padding: 15px 20px;
+            background: #2c3e50;
             color: white;
-            border-radius: 8px;
-            font-size: 20px;
-            font-weight: bold;
+            border-radius: 4px;
+            font-size: 18px;
+            font-weight: 600;
         }
         
         .qr-section {
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            border: 2px dashed #667eea;
-            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .qr-text {
+            flex: 1;
+        }
+        
+        .qr-text strong {
+            color: #2c3e50;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .qr-text p {
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .qr-image {
+            width: 120px;
+            height: 120px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            background: white;
         }
         
         .qr-preview {
-            max-width: 200px;
+            max-width: 150px;
             margin: 10px auto;
         }
         
         .saved-data {
-            background: #e7f3ff;
+            background: #e8f4f8;
             padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .saved-data strong {
+            color: #2c3e50;
+            font-size: 14px;
         }
         
         .saved-item {
             display: inline-block;
             background: white;
-            padding: 8px 15px;
-            margin: 5px;
-            border-radius: 20px;
+            padding: 6px 14px;
+            margin: 5px 5px 5px 0;
+            border-radius: 4px;
             cursor: pointer;
-            border: 2px solid #667eea;
+            border: 1px solid #3498db;
+            font-size: 13px;
+            color: #2c3e50;
+            transition: all 0.3s;
         }
         
         .saved-item:hover {
-            background: #667eea;
+            background: #3498db;
             color: white;
+        }
+        
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #7f8c8d;
+            font-size: 13px;
         }
         
         @media (max-width: 768px) {
@@ -268,7 +384,7 @@
             }
             
             .header h1 {
-                font-size: 22px;
+                font-size: 20px;
             }
             
             .main-content {
@@ -276,11 +392,16 @@
             }
             
             .estimate-preview {
-                padding: 15px;
+                padding: 20px;
             }
             
             .estimate-title {
-                font-size: 24px;
+                font-size: 22px;
+            }
+            
+            .party-section {
+                flex-direction: column;
+                gap: 15px;
             }
             
             .items-table, .estimate-table {
@@ -289,12 +410,23 @@
             
             .items-table th, .items-table td,
             .estimate-table th, .estimate-table td {
-                padding: 8px 4px;
+                padding: 8px 6px;
             }
             
             .btn {
                 padding: 10px 15px;
-                font-size: 12px;
+                font-size: 13px;
+            }
+            
+            .qr-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .qr-image {
+                width: 100px;
+                height: 100px;
             }
         }
         
@@ -310,28 +442,30 @@
         }
         
         .file-input-label {
-            background: #667eea;
+            background: #3498db;
             color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 4px;
             cursor: pointer;
             display: inline-block;
+            font-size: 14px;
+            transition: background 0.3s;
         }
         
         .file-input-label:hover {
-            background: #5568d3;
+            background: #2980b9;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🇮🇳 Indian Estimate Maker</h1>
+            <h1>Indian Estimate Maker</h1>
             <p>Create Professional Estimates with QR Payment</p>
         </div>
         
         <div class="login-section" id="loginSection">
-            <h2 style="margin-bottom: 20px;">Welcome! Please Login</h2>
+            <h2 style="margin-bottom: 20px; color: #2c3e50;">Welcome! Please Login</h2>
             <button class="login-btn" onclick="simulateGoogleLogin()">
                 <svg width="20" height="20" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -404,18 +538,18 @@
             </div>
             
             <div class="form-section">
-                <h3>Upload Payment QR Code</h3>
+                <h3>Upload Payment QR Code (Optional)</h3>
                 <div class="file-input-wrapper">
                     <label class="file-input-label" for="qrUpload">Choose QR Image</label>
                     <input type="file" id="qrUpload" accept="image/*" onchange="handleQRUpload(event)">
                 </div>
                 <div id="qrPreview" style="display:none; margin-top:15px;">
-                    <img id="qrImage" style="max-width:200px; border:2px solid #ddd; border-radius:8px;">
+                    <img id="qrImage" style="max-width:150px; border:2px solid #ddd; border-radius:4px;">
                 </div>
             </div>
             
-            <button class="btn" onclick="generateEstimate()" style="font-size:16px; padding:15px 30px;">Generate Estimate</button>
-            <button class="btn btn-success" onclick="downloadEstimate()" style="font-size:16px; padding:15px 30px; display:none;" id="downloadBtn">Download as Image</button>
+            <button class="btn" onclick="generateEstimate()" style="font-size:15px; padding:12px 25px;">Generate Estimate</button>
+            <button class="btn btn-success" onclick="downloadEstimate()" style="font-size:15px; padding:12px 25px; display:none;" id="downloadBtn">Download as Image</button>
             
             <div id="estimatePreview" style="display:none;"></div>
         </div>
@@ -555,33 +689,34 @@
             
             const grandTotal = items.reduce((sum, item) => sum + item.total, 0);
             const estimateDate = new Date().toLocaleDateString('en-IN');
+            const estimateNumber = 'EST-' + Date.now().toString().slice(-6);
             
             const estimateHTML = `
                 <div class="estimate-preview" id="estimateContent">
                     <div class="estimate-header">
                         <div class="estimate-title">ESTIMATE</div>
-                        <div style="margin-top:10px; color:#666;">Date: ${estimateDate}</div>
+                        <div class="estimate-subtitle">Estimate #${estimateNumber} | Date: ${estimateDate}</div>
                     </div>
                     
-                    <div style="display:flex; justify-content:space-between; margin:20px 0;">
-                        <div>
-                            <strong style="color:#138808;">From:</strong><br>
-                            <div style="font-size:18px; margin-top:5px;">${businessName}</div>
+                    <div class="party-section">
+                        <div class="party-box">
+                            <strong>From</strong>
+                            <div>${businessName}</div>
                         </div>
-                        <div style="text-align:right;">
-                            <strong style="color:#138808;">To:</strong><br>
-                            <div style="font-size:18px; margin-top:5px;">${partyName}</div>
+                        <div class="party-box" style="text-align:right;">
+                            <strong>To</strong>
+                            <div>${partyName}</div>
                         </div>
                     </div>
                     
                     <table class="estimate-table">
                         <thead>
                             <tr>
-                                <th>S.No</th>
+                                <th style="width:50px;">S.No</th>
                                 <th>Item Name</th>
-                                <th>Quantity</th>
-                                <th>Price (₹)</th>
-                                <th>Total (₹)</th>
+                                <th style="width:100px;">Quantity</th>
+                                <th style="width:120px;">Price (₹)</th>
+                                <th style="width:120px;">Total (₹)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -603,16 +738,16 @@
                     
                     ${qrImageData ? `
                         <div class="qr-section">
-                            <strong style="color:#138808; font-size:18px;">Scan to Pay</strong>
-                            <div class="qr-preview">
-                                <img src="${qrImageData}" style="width:100%; border-radius:8px;">
+                            <div class="qr-text">
+                                <strong>Scan to Pay</strong>
+                                <p>Use any UPI app to scan and pay</p>
                             </div>
+                            <img src="${qrImageData}" class="qr-image" alt="Payment QR Code">
                         </div>
                     ` : ''}
                     
-                    <div style="text-align:center; margin-top:30px; padding-top:20px; border-top:2px solid #ddd; color:#666;">
+                    <div class="footer-note">
                         <p>Thank you for your business!</p>
-                        <p style="margin-top:5px;">🇮🇳 Made in India</p>
                     </div>
                 </div>
             `;
