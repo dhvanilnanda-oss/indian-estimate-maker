@@ -274,124 +274,271 @@
             justify-content: center;
             margin-top: 25px;
             padding: 20px;
-            background: #f5f5f5;
+            background: #e8e8e8;
         }
         
         .estimate-preview {
             background: white;
             width: 100%;
             max-width: 600px;
-            padding: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .estimate-header {
-            text-align: center;
-            border-bottom: 2px solid #2c3e50;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .estimate-title {
-            font-size: 26px;
-            color: #2c3e50;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-        
-        .estimate-subtitle {
-            color: #7f8c8d;
-            font-size: 12px;
-            margin-top: 6px;
-        }
-        
-        .party-section {
+        .estimate-top {
             display: flex;
             justify-content: space-between;
-            margin: 20px 0;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 4px;
+            align-items: flex-start;
+            margin-bottom: 40px;
         }
         
-        .party-box {
+        .company-info {
             flex: 1;
         }
         
-        .party-box strong {
-            color: #2c3e50;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .party-box div {
-            font-size: 15px;
-            margin-top: 6px;
-            color: #34495e;
-            font-weight: 500;
-        }
-        
-        .estimate-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        
-        .estimate-table th {
-            background: #34495e;
-            color: white;
-            padding: 10px 6px;
-            text-align: left;
-            border: 1px solid #2c3e50;
-            font-weight: 500;
-            font-size: 11px;
-        }
-        
-        .estimate-table td {
-            padding: 10px 6px;
-            border: 1px solid #ddd;
-            font-size: 12px;
-        }
-        
-        .estimate-table tbody tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        
-        .total-section {
-            text-align: right;
-            margin-top: 20px;
-            padding: 12px 15px;
-            background: #2c3e50;
-            color: white;
-            border-radius: 4px;
+        .company-name {
             font-size: 16px;
             font-weight: 600;
-        }
-        
-        .qr-section {
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 4px;
-        }
-        
-        .qr-section strong {
             color: #2c3e50;
-            font-size: 13px;
-            display: block;
             margin-bottom: 8px;
         }
         
-        .qr-image {
-            width: 120px;
-            height: 120px;
-            border: 2px solid #ddd;
+        .company-details {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .logo-upload {
+            width: 180px;
+            height: 60px;
+            border: 2px dashed #ccc;
             border-radius: 4px;
-            padding: 5px;
-            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 13px;
+            cursor: pointer;
+            background: #f9f9f9;
+        }
+        
+        .logo-image {
+            width: 180px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+        
+        .estimate-title-section {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+        
+        .estimate-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #5a9e8c;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        
+        .estimate-meta {
+            display: inline-block;
+            text-align: left;
+        }
+        
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .meta-label {
+            color: #5a9e8c;
+            font-weight: 600;
+            margin-right: 30px;
+        }
+        
+        .meta-value {
+            color: #333;
+            text-align: right;
+        }
+        
+        .customer-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-label {
+            font-size: 11px;
+            color: #5a9e8c;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        
+        .customer-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+        
+        .customer-details {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .items-table-estimate {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        
+        .items-table-estimate thead {
+            background: #5a9e8c;
+            color: white;
+        }
+        
+        .items-table-estimate th {
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .items-table-estimate th:first-child {
+            width: 60px;
+        }
+        
+        .items-table-estimate th:nth-child(3) {
+            width: 100px;
+            text-align: right;
+        }
+        
+        .items-table-estimate th:nth-child(4) {
+            width: 100px;
+            text-align: right;
+        }
+        
+        .items-table-estimate td {
+            padding: 12px 10px;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 13px;
+            color: #333;
+        }
+        
+        .items-table-estimate td:nth-child(3),
+        .items-table-estimate td:nth-child(4) {
+            text-align: right;
+        }
+        
+        .items-table-estimate tbody tr:last-child td {
+            border-bottom: 2px solid #5a9e8c;
+        }
+        
+        .totals-section {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .totals-table {
+            width: 280px;
+        }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 13px;
+        }
+        
+        .total-row.subtotal {
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .total-row.grand-total {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            margin-top: 5px;
+            font-weight: 700;
+            font-size: 15px;
+            color: #2c3e50;
+        }
+        
+        .total-label {
+            color: #666;
+        }
+        
+        .total-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .grand-total .total-label,
+        .grand-total .total-value {
+            color: #2c3e50;
+        }
+        
+        .qr-payment-section {
+            margin-top: 30px;
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .qr-title {
+            font-size: 13px;
+            color: #5a9e8c;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .qr-code-image {
+            width: 140px;
+            height: 140px;
             margin: 0 auto;
+            border: 2px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 8px;
+            background: white;
+        }
+        
+        .terms-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e8e8e8;
+        }
+        
+        .terms-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .terms-content {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            text-align: right;
+        }
+        
+        .signature-line {
+            width: 200px;
+            border-top: 1px solid #999;
+            margin-left: auto;
+            padding-top: 8px;
+            font-size: 11px;
+            color: #999;
         }
         
         .qr-preview {
@@ -428,15 +575,6 @@
         .saved-item:hover {
             background: #3498db;
             color: white;
-        }
-        
-        .footer-note {
-            text-align: center;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #e0e0e0;
-            color: #7f8c8d;
-            font-size: 11px;
         }
         
         .history-item {
@@ -504,35 +642,30 @@
             }
             
             .estimate-preview {
-                padding: 20px;
+                padding: 25px;
             }
             
             .estimate-title {
-                font-size: 22px;
+                font-size: 26px;
             }
             
-            .party-section {
+            .estimate-top {
                 flex-direction: column;
-                gap: 12px;
+                gap: 20px;
             }
             
-            .items-table, .estimate-table {
+            .logo-upload, .logo-image {
+                width: 150px;
+                height: 50px;
+            }
+            
+            .items-table, .items-table-estimate {
                 font-size: 11px;
-            }
-            
-            .items-table th, .items-table td,
-            .estimate-table th, .estimate-table td {
-                padding: 8px 4px;
             }
             
             .btn {
                 padding: 10px 15px;
                 font-size: 13px;
-            }
-            
-            .qr-image {
-                width: 100px;
-                height: 100px;
             }
             
             .tabs {
@@ -636,21 +769,25 @@
                         <input type="text" id="partyName" placeholder="Start typing..." autocomplete="off">
                         <div id="partyAutocomplete" class="autocomplete-items"></div>
                     </div>
+                    <div class="form-group">
+                        <label>Party Address (Optional)</label>
+                        <textarea id="partyAddress" rows="2" placeholder="Enter party address"></textarea>
+                    </div>
                 </div>
                 
                 <div class="form-section">
                     <h3>Add Items</h3>
                     <div class="form-group">
-                        <label>Item Name *</label>
+                        <label>Item Description *</label>
                         <input type="text" id="itemName" placeholder="Start typing..." autocomplete="off">
                         <div id="itemAutocomplete" class="autocomplete-items"></div>
                     </div>
                     <div class="form-group">
                         <label>Quantity *</label>
-                        <input type="number" id="itemQty" placeholder="Enter quantity" min="1">
+                        <input type="number" id="itemQty" placeholder="Enter quantity" min="1" step="0.01">
                     </div>
                     <div class="form-group">
-                        <label>Price per Unit (₹) *</label>
+                        <label>Unit Price (₹) *</label>
                         <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
                     </div>
                     <button class="btn btn-success" onclick="addItem()">Add Item</button>
@@ -658,10 +795,10 @@
                     <table class="items-table" id="itemsTable" style="display:none;">
                         <thead>
                             <tr>
-                                <th>Item Name</th>
+                                <th>Description</th>
                                 <th>Quantity</th>
                                 <th>Price (₹)</th>
-                                <th>Total (₹)</th>
+                                <th>Amount (₹)</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -677,6 +814,17 @@
                     </div>
                     <div id="qrPreview" style="display:none; margin-top:15px;">
                         <img id="qrImage" style="max-width:150px; border:2px solid #ddd; border-radius:4px;">
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Upload Logo (Optional)</h3>
+                    <div class="file-input-wrapper">
+                        <label class="file-input-label" for="logoUpload">Choose Logo</label>
+                        <input type="file" id="logoUpload" accept="image/*" onchange="handleLogoUpload(event)">
+                    </div>
+                    <div id="logoPreview" style="display:none; margin-top:15px;">
+                        <img id="logoImage" style="max-width:180px; max-height:60px; border:2px solid #ddd; border-radius:4px;">
                     </div>
                 </div>
                 
@@ -699,15 +847,15 @@
                     </div>
                     <div class="form-group">
                         <label>Business Address</label>
-                        <textarea id="businessAddress" rows="3" placeholder="Enter your business address (optional)"></textarea>
+                        <textarea id="businessAddress" rows="3" placeholder="Enter your business address"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Phone Number</label>
-                        <input type="tel" id="businessPhone" placeholder="Enter phone number (optional)">
+                        <input type="tel" id="businessPhone" placeholder="Enter phone number">
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" id="businessEmail" placeholder="Enter email (optional)">
+                        <input type="email" id="businessEmail" placeholder="Enter email">
                     </div>
                     <button class="btn btn-success" onclick="saveBusinessSettings()">Save Business Settings</button>
                 </div>
@@ -718,6 +866,7 @@
     <script>
         let items = [];
         let qrImageData = null;
+        let logoImageData = null;
         let currentEstimateId = null;
         let savedParties = JSON.parse(localStorage.getItem('savedParties') || '[]');
         let savedItems = JSON.parse(localStorage.getItem('savedItems') || '[]');
@@ -750,6 +899,7 @@
             document.getElementById('mainContent').style.display = 'none';
             items = [];
             qrImageData = null;
+            logoImageData = null;
         }
         
         function switchTab(tab) {
@@ -911,8 +1061,22 @@
             }
         }
         
+        function handleLogoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    logoImageData = e.target.result;
+                    document.getElementById('logoPreview').style.display = 'block';
+                    document.getElementById('logoImage').src = logoImageData;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
         function generateEstimate() {
             const partyName = document.getElementById('partyName').value.trim();
+            const partyAddress = document.getElementById('partyAddress').value.trim();
             
             if (!businessSettings.name) {
                 alert('Please set up your business details in Settings first');
@@ -935,12 +1099,14 @@
                 localStorage.setItem('savedParties', JSON.stringify(savedParties));
             }
             
-            const grandTotal = items.reduce((sum, item) => sum + item.total, 0);
-            const estimateDate = new Date().toLocaleDateString('en-IN');
+            const subtotal = items.reduce((sum, item) => sum + item.total, 0);
+            const grandTotal = subtotal;
+            const estimateDate = new Date().toLocaleDateString('en-IN', {day: '2-digit', month: '2-digit', year: 'numeric'});
+            const dueDate = new Date(Date.now() + 14*24*60*60*1000).toLocaleDateString('en-IN', {day: '2-digit', month: '2-digit', year: 'numeric'});
             
             estimateCounter++;
             localStorage.setItem('estimateCounter', estimateCounter.toString());
-            const estimateNumber = estimateCounter;
+            const estimateNumber = estimateCounter.toString().padStart(7, '0');
             
             currentEstimateId = Date.now();
             
@@ -948,15 +1114,19 @@
                 id: currentEstimateId,
                 number: estimateNumber,
                 date: estimateDate,
+                dueDate: dueDate,
                 timestamp: new Date().toISOString(),
                 partyName: partyName,
+                partyAddress: partyAddress,
                 businessName: businessSettings.name,
                 businessAddress: businessSettings.address,
                 businessPhone: businessSettings.phone,
                 businessEmail: businessSettings.email,
                 items: [...items],
+                subtotal: subtotal,
                 total: grandTotal,
-                qrCode: qrImageData
+                qrCode: qrImageData,
+                logo: logoImageData
             };
             
             estimates.unshift(estimate);
@@ -966,46 +1136,63 @@
         }
         
         function displayEstimate(estimate) {
-            let businessDetails = estimate.businessName;
-            if (estimate.businessAddress) businessDetails += '<br>' + estimate.businessAddress;
-            if (estimate.businessPhone) businessDetails += '<br>Ph: ' + estimate.businessPhone;
-            if (estimate.businessEmail) businessDetails += '<br>' + estimate.businessEmail;
+            let companyDetails = '';
+            if (estimate.businessAddress) companyDetails += estimate.businessAddress + '<br>';
+            if (estimate.businessPhone) companyDetails += estimate.businessPhone + '<br>';
+            if (estimate.businessEmail) companyDetails += estimate.businessEmail;
+            
+            let customerDetails = '';
+            if (estimate.partyAddress) customerDetails = estimate.partyAddress;
             
             const estimateHTML = `
                 <div class="estimate-preview-wrapper">
                     <div class="estimate-preview" id="estimateContent">
-                        <div class="estimate-header">
+                        <div class="estimate-top">
+                            <div class="company-info">
+                                <div class="company-name">${estimate.businessName}</div>
+                                <div class="company-details">${companyDetails}</div>
+                            </div>
+                            ${estimate.logo ? `<img src="${estimate.logo}" class="logo-image" alt="Logo">` : '<div class="logo-upload">Upload Logo</div>'}
+                        </div>
+                        
+                        <div class="estimate-title-section">
                             <div class="estimate-title">ESTIMATE</div>
-                            <div class="estimate-subtitle">#${estimate.number} | ${estimate.date}</div>
+                            <div class="estimate-meta">
+                                <div class="meta-row">
+                                    <span class="meta-label">Estimate #</span>
+                                    <span class="meta-value">${estimate.number}</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Estimate date</span>
+                                    <span class="meta-value">${estimate.date}</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Due date</span>
+                                    <span class="meta-value">${estimate.dueDate}</span>
+                                </div>
+                            </div>
                         </div>
                         
-                        <div class="party-section">
-                            <div class="party-box">
-                                <strong>From</strong>
-                                <div>${businessDetails}</div>
-                            </div>
-                            <div class="party-box" style="text-align:right;">
-                                <strong>To</strong>
-                                <div>${estimate.partyName}</div>
-                            </div>
+                        <div class="customer-section">
+                            <div class="section-label">To</div>
+                            <div class="customer-name">${estimate.partyName}</div>
+                            ${customerDetails ? `<div class="customer-details">${customerDetails}</div>` : ''}
                         </div>
                         
-                        <table class="estimate-table">
+                        <table class="items-table-estimate">
                             <thead>
                                 <tr>
-                                    <th style="width:35px;">No.</th>
-                                    <th>Item Name</th>
-                                    <th style="width:70px;">Qty</th>
-                                    <th style="width:90px;">Price (₹)</th>
-                                    <th style="width:90px;">Total (₹)</th>
+                                    <th>QTY</th>
+                                    <th>Description</th>
+                                    <th>Unit Price</th>
+                                    <th>Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${estimate.items.map((item, index) => `
+                                ${estimate.items.map(item => `
                                     <tr>
-                                        <td>${index + 1}</td>
+                                        <td>${item.qty.toFixed(2)}</td>
                                         <td>${item.name}</td>
-                                        <td>${item.qty}</td>
                                         <td>₹${item.price.toFixed(2)}</td>
                                         <td>₹${item.total.toFixed(2)}</td>
                                     </tr>
@@ -1013,19 +1200,36 @@
                             </tbody>
                         </table>
                         
-                        <div class="total-section">
-                            GRAND TOTAL: ₹${estimate.total.toFixed(2)}
+                        <div class="totals-section">
+                            <div class="totals-table">
+                                <div class="total-row subtotal">
+                                    <span class="total-label">Subtotal</span>
+                                    <span class="total-value">₹${estimate.subtotal.toFixed(2)}</span>
+                                </div>
+                                <div class="total-row grand-total">
+                                    <span class="total-label">Total (INR)</span>
+                                    <span class="total-value">₹${estimate.total.toFixed(2)}</span>
+                                </div>
+                            </div>
                         </div>
                         
                         ${estimate.qrCode ? `
-                            <div class="qr-section">
-                                <strong>Scan to Pay</strong>
-                                <img src="${estimate.qrCode}" class="qr-image" alt="Payment QR">
+                            <div class="qr-payment-section">
+                                <div class="qr-title">Scan to Pay</div>
+                                <img src="${estimate.qrCode}" class="qr-code-image" alt="Payment QR">
                             </div>
                         ` : ''}
                         
-                        <div class="footer-note">
-                            <p>Thank you for your business!</p>
+                        <div class="terms-section">
+                            <div class="terms-title">Terms and Conditions</div>
+                            <div class="terms-content">
+                                Payment is due in 14 days<br>
+                                Please make checks payable to: ${estimate.businessName}
+                            </div>
+                        </div>
+                        
+                        <div class="signature-section">
+                            <div class="signature-line">customer signature</div>
                         </div>
                     </div>
                 </div>
@@ -1046,10 +1250,9 @@
                 backgroundColor: '#ffffff',
                 logging: false,
                 useCORS: true,
+                allowTaint: true,
                 width: element.offsetWidth,
-                height: element.offsetHeight,
-                windowWidth: element.offsetWidth,
-                windowHeight: element.offsetHeight
+                height: element.offsetHeight
             }).then(canvas => {
                 const link = document.createElement('a');
                 const estimate = estimates.find(e => e.id === currentEstimateId);
@@ -1098,12 +1301,19 @@
             const estimate = estimates.find(e => e.id === id);
             
             document.getElementById('partyName').value = estimate.partyName;
+            document.getElementById('partyAddress').value = estimate.partyAddress || '';
             items = [...estimate.items];
             qrImageData = estimate.qrCode;
+            logoImageData = estimate.logo;
             
             if (qrImageData) {
                 document.getElementById('qrPreview').style.display = 'block';
                 document.getElementById('qrImage').src = qrImageData;
+            }
+            
+            if (logoImageData) {
+                document.getElementById('logoPreview').style.display = 'block';
+                document.getElementById('logoImage').src = logoImageData;
             }
             
             updateItemsTable();
