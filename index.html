@@ -269,27 +269,31 @@
             background: #f8f9fa;
         }
         
+        .estimate-preview-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
         .estimate-preview {
             background: white;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            padding: 30px;
-            margin-top: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
+            max-width: 600px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .estimate-header {
             text-align: center;
             border-bottom: 2px solid #2c3e50;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .estimate-title {
-            font-size: 28px;
+            font-size: 26px;
             color: #2c3e50;
             font-weight: 700;
             letter-spacing: 2px;
@@ -297,15 +301,15 @@
         
         .estimate-subtitle {
             color: #7f8c8d;
-            font-size: 13px;
-            margin-top: 8px;
+            font-size: 12px;
+            margin-top: 6px;
         }
         
         .party-section {
             display: flex;
             justify-content: space-between;
-            margin: 25px 0;
-            padding: 20px;
+            margin: 20px 0;
+            padding: 15px;
             background: #f8f9fa;
             border-radius: 4px;
         }
@@ -316,14 +320,14 @@
         
         .party-box strong {
             color: #2c3e50;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
         
         .party-box div {
-            font-size: 16px;
-            margin-top: 8px;
+            font-size: 15px;
+            margin-top: 6px;
             color: #34495e;
             font-weight: 500;
         }
@@ -331,23 +335,23 @@
         .estimate-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
+            margin: 20px 0;
         }
         
         .estimate-table th {
             background: #34495e;
             color: white;
-            padding: 10px 8px;
+            padding: 10px 6px;
             text-align: left;
             border: 1px solid #2c3e50;
             font-weight: 500;
-            font-size: 12px;
+            font-size: 11px;
         }
         
         .estimate-table td {
-            padding: 10px 8px;
+            padding: 10px 6px;
             border: 1px solid #ddd;
-            font-size: 13px;
+            font-size: 12px;
         }
         
         .estimate-table tbody tr:nth-child(even) {
@@ -356,8 +360,8 @@
         
         .total-section {
             text-align: right;
-            margin-top: 25px;
-            padding: 12px 20px;
+            margin-top: 20px;
+            padding: 12px 15px;
             background: #2c3e50;
             color: white;
             border-radius: 4px;
@@ -366,39 +370,28 @@
         }
         
         .qr-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 25px;
+            text-align: center;
+            margin-top: 20px;
             padding: 15px;
             background: #f8f9fa;
             border-radius: 4px;
-            border: 1px solid #e0e0e0;
         }
         
-        .qr-text {
-            flex: 1;
-        }
-        
-        .qr-text strong {
+        .qr-section strong {
             color: #2c3e50;
-            font-size: 14px;
+            font-size: 13px;
             display: block;
-            margin-bottom: 3px;
-        }
-        
-        .qr-text p {
-            color: #7f8c8d;
-            font-size: 12px;
+            margin-bottom: 8px;
         }
         
         .qr-image {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border: 2px solid #ddd;
             border-radius: 4px;
             padding: 5px;
             background: white;
+            margin: 0 auto;
         }
         
         .qr-preview {
@@ -439,11 +432,11 @@
         
         .footer-note {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 20px;
             padding-top: 15px;
             border-top: 1px solid #e0e0e0;
             color: #7f8c8d;
-            font-size: 12px;
+            font-size: 11px;
         }
         
         .history-item {
@@ -520,7 +513,7 @@
             
             .party-section {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
             }
             
             .items-table, .estimate-table {
@@ -537,15 +530,9 @@
                 font-size: 13px;
             }
             
-            .qr-section {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            
             .qr-image {
-                width: 90px;
-                height: 90px;
+                width: 100px;
+                height: 100px;
             }
             
             .tabs {
@@ -985,62 +972,61 @@
             if (estimate.businessEmail) businessDetails += '<br>' + estimate.businessEmail;
             
             const estimateHTML = `
-                <div class="estimate-preview" id="estimateContent">
-                    <div class="estimate-header">
-                        <div class="estimate-title">ESTIMATE</div>
-                        <div class="estimate-subtitle">#${estimate.number} | ${estimate.date}</div>
-                    </div>
-                    
-                    <div class="party-section">
-                        <div class="party-box">
-                            <strong>From</strong>
-                            <div>${businessDetails}</div>
+                <div class="estimate-preview-wrapper">
+                    <div class="estimate-preview" id="estimateContent">
+                        <div class="estimate-header">
+                            <div class="estimate-title">ESTIMATE</div>
+                            <div class="estimate-subtitle">#${estimate.number} | ${estimate.date}</div>
                         </div>
-                        <div class="party-box" style="text-align:right;">
-                            <strong>To</strong>
-                            <div>${estimate.partyName}</div>
-                        </div>
-                    </div>
-                    
-                    <table class="estimate-table">
-                        <thead>
-                            <tr>
-                                <th style="width:40px;">No.</th>
-                                <th>Item Name</th>
-                                <th style="width:80px;">Qty</th>
-                                <th style="width:100px;">Price (₹)</th>
-                                <th style="width:100px;">Total (₹)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${estimate.items.map((item, index) => `
-                                <tr>
-                                    <td>${index + 1}</td>
-                                    <td>${item.name}</td>
-                                    <td>${item.qty}</td>
-                                    <td>₹${item.price.toFixed(2)}</td>
-                                    <td>₹${item.total.toFixed(2)}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                    
-                    <div class="total-section">
-                        GRAND TOTAL: ₹${estimate.total.toFixed(2)}
-                    </div>
-                    
-                    ${estimate.qrCode ? `
-                        <div class="qr-section">
-                            <div class="qr-text">
-                                <strong>Scan to Pay</strong>
-                                <p>Use any UPI app</p>
+                        
+                        <div class="party-section">
+                            <div class="party-box">
+                                <strong>From</strong>
+                                <div>${businessDetails}</div>
                             </div>
-                            <img src="${estimate.qrCode}" class="qr-image" alt="Payment QR">
+                            <div class="party-box" style="text-align:right;">
+                                <strong>To</strong>
+                                <div>${estimate.partyName}</div>
+                            </div>
                         </div>
-                    ` : ''}
-                    
-                    <div class="footer-note">
-                        <p>Thank you for your business!</p>
+                        
+                        <table class="estimate-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:35px;">No.</th>
+                                    <th>Item Name</th>
+                                    <th style="width:70px;">Qty</th>
+                                    <th style="width:90px;">Price (₹)</th>
+                                    <th style="width:90px;">Total (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${estimate.items.map((item, index) => `
+                                    <tr>
+                                        <td>${index + 1}</td>
+                                        <td>${item.name}</td>
+                                        <td>${item.qty}</td>
+                                        <td>₹${item.price.toFixed(2)}</td>
+                                        <td>₹${item.total.toFixed(2)}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                        
+                        <div class="total-section">
+                            GRAND TOTAL: ₹${estimate.total.toFixed(2)}
+                        </div>
+                        
+                        ${estimate.qrCode ? `
+                            <div class="qr-section">
+                                <strong>Scan to Pay</strong>
+                                <img src="${estimate.qrCode}" class="qr-image" alt="Payment QR">
+                            </div>
+                        ` : ''}
+                        
+                        <div class="footer-note">
+                            <p>Thank you for your business!</p>
+                        </div>
                     </div>
                 </div>
             `;
@@ -1056,19 +1042,19 @@
             const element = document.getElementById('estimateContent');
             
             html2canvas(element, {
-                scale: 3,
+                scale: 2.5,
                 backgroundColor: '#ffffff',
                 logging: false,
                 useCORS: true,
-                width: element.scrollWidth,
-                height: element.scrollHeight,
-                windowWidth: element.scrollWidth,
-                windowHeight: element.scrollHeight
+                width: element.offsetWidth,
+                height: element.offsetHeight,
+                windowWidth: element.offsetWidth,
+                windowHeight: element.offsetHeight
             }).then(canvas => {
                 const link = document.createElement('a');
                 const estimate = estimates.find(e => e.id === currentEstimateId);
                 link.download = `Estimate_${estimate.number}_${estimate.partyName}.png`;
-                link.href = canvas.toDataURL('image/png');
+                link.href = canvas.toDataURL('image/png', 1.0);
                 link.click();
             });
         }
