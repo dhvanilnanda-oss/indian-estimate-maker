@@ -153,6 +153,15 @@
             position: relative;
         }
         
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
         label {
             display: block;
             margin-bottom: 6px;
@@ -269,6 +278,19 @@
             background: #f8f9fa;
         }
         
+        .balance-info {
+            background: #fff3cd;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ffc107;
+            font-size: 14px;
+        }
+        
+        .balance-info strong {
+            color: #856404;
+        }
+        
         .estimate-preview-wrapper {
             display: flex;
             justify-content: center;
@@ -280,8 +302,8 @@
         .estimate-preview {
             background: white;
             width: 100%;
-            max-width: 650px;
-            padding: 35px;
+            max-width: 700px;
+            padding: 30px 25px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
@@ -359,31 +381,31 @@
         }
         
         .items-table-estimate th {
-            padding: 12px 8px;
+            padding: 12px 6px;
             text-align: left;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
         }
         
         .items-table-estimate th:first-child {
-            width: 80px;
+            width: 70px;
             text-align: center;
         }
         
         .items-table-estimate th:nth-child(3) {
-            width: 110px;
+            width: 95px;
             text-align: right;
         }
         
         .items-table-estimate th:nth-child(4) {
-            width: 110px;
+            width: 105px;
             text-align: right;
         }
         
         .items-table-estimate td {
-            padding: 12px 8px;
+            padding: 12px 6px;
             border-bottom: 1px solid #e8e8e8;
-            font-size: 13px;
+            font-size: 12px;
             color: #333;
         }
         
@@ -407,17 +429,14 @@
         }
         
         .totals-table {
-            width: 350px;
+            width: 380px;
         }
         
         .total-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            font-size: 14px;
-        }
-        
-        .total-row.subtotal {
+            padding: 10px 15px;
+            font-size: 13px;
             border-bottom: 1px solid #e8e8e8;
         }
         
@@ -428,6 +447,7 @@
             font-weight: 700;
             font-size: 16px;
             color: #2c3e50;
+            border-bottom: none;
         }
         
         .total-label {
@@ -555,6 +575,17 @@
             gap: 10px;
         }
         
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 0;
@@ -570,7 +601,7 @@
             }
             
             .estimate-preview {
-                padding: 25px 20px;
+                padding: 25px 15px;
             }
             
             .estimate-title {
@@ -592,7 +623,7 @@
             
             .items-table-estimate th,
             .items-table-estimate td {
-                padding: 10px 5px;
+                padding: 10px 4px;
             }
             
             .btn {
@@ -616,6 +647,10 @@
             
             .totals-table {
                 width: 100%;
+            }
+            
+            .form-row {
+                flex-direction: column;
             }
         }
         
@@ -692,6 +727,7 @@
             <div class="tabs">
                 <button class="tab active" onclick="switchTab('create')">Create Estimate</button>
                 <button class="tab" onclick="switchTab('history')">History</button>
+                <button class="tab" onclick="switchTab('payments')">Payments</button>
                 <button class="tab" onclick="switchTab('settings')">Settings</button>
             </div>
             
@@ -707,12 +743,19 @@
                     <h3>Party Details</h3>
                     <div class="form-group">
                         <label>Party Name *</label>
-                        <input type="text" id="partyName" placeholder="Start typing..." autocomplete="off">
+                        <input type="text" id="partyName" placeholder="Start typing..." autocomplete="off" onchange="loadPartyBalance()">
                         <div id="partyAutocomplete" class="autocomplete-items"></div>
+                    </div>
+                    <div id="partyBalanceInfo" class="balance-info" style="display:none;">
+                        <strong>Current Balance:</strong> <span id="partyBalance">₹0.00</span>
                     </div>
                     <div class="form-group">
                         <label>Party Address (Optional)</label>
                         <textarea id="partyAddress" rows="2" placeholder="Enter party address"></textarea>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="addOldBalance" onchange="toggleOldBalance()">
+                        <label for="addOldBalance" style="margin:0;">Add old balance to this estimate</label>
                     </div>
                 </div>
                 
@@ -723,13 +766,15 @@
                         <input type="text" id="itemName" placeholder="Start typing..." autocomplete="off">
                         <div id="itemAutocomplete" class="autocomplete-items"></div>
                     </div>
-                    <div class="form-group">
-                        <label>Quantity *</label>
-                        <input type="number" id="itemQty" placeholder="Enter quantity" min="1" step="0.01">
-                    </div>
-                    <div class="form-group">
-                        <label>Unit Price (₹) *</label>
-                        <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Quantity *</label>
+                            <input type="number" id="itemQty" placeholder="Enter quantity" min="1" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>Unit Price (₹) *</label>
+                            <input type="number" id="itemPrice" placeholder="Enter price" min="0" step="0.01">
+                        </div>
                     </div>
                     <button class="btn btn-success" onclick="addItem()">Add Item</button>
                     
@@ -745,6 +790,20 @@
                         </thead>
                         <tbody id="itemsBody"></tbody>
                     </table>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Miscellaneous Charges (Optional)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Description (e.g., Transport, Courier)</label>
+                            <input type="text" id="miscDesc" placeholder="Enter description">
+                        </div>
+                        <div class="form-group">
+                            <label>Amount (₹)</label>
+                            <input type="number" id="miscAmount" placeholder="Enter amount (+ or -)" step="0.01">
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="form-section">
@@ -766,6 +825,32 @@
             
             <div id="historyTab" class="tab-content">
                 <div id="historyList"></div>
+            </div>
+            
+            <div id="paymentsTab" class="tab-content">
+                <div class="form-section">
+                    <h3>Add Payment</h3>
+                    <div class="form-group">
+                        <label>Party Name *</label>
+                        <input type="text" id="paymentPartyName" placeholder="Start typing..." autocomplete="off">
+                        <div id="paymentPartyAutocomplete" class="autocomplete-items"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Amount (₹) *</label>
+                        <input type="number" id="paymentAmount" placeholder="Enter amount" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Date</label>
+                        <input type="date" id="paymentDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Notes (Optional)</label>
+                        <textarea id="paymentNotes" rows="2" placeholder="Enter payment notes"></textarea>
+                    </div>
+                    <button class="btn btn-success" onclick="addPayment()">Add Payment</button>
+                </div>
+                
+                <div id="paymentsList"></div>
             </div>
             
             <div id="settingsTab" class="tab-content">
@@ -800,8 +885,10 @@
         let savedParties = JSON.parse(localStorage.getItem('savedParties') || '[]');
         let savedItems = JSON.parse(localStorage.getItem('savedItems') || '[]');
         let estimates = JSON.parse(localStorage.getItem('estimates') || '[]');
+        let payments = JSON.parse(localStorage.getItem('payments') || '[]');
         let businessSettings = JSON.parse(localStorage.getItem('businessSettings') || '{}');
         let estimateCounter = parseInt(localStorage.getItem('estimateCounter') || '0');
+        let includeOldBalance = false;
         
         function simulateGoogleLogin() {
             const email = prompt("Enter your Gmail address:");
@@ -820,6 +907,10 @@
             loadBusinessSettings();
             setupAutocomplete();
             loadHistory();
+            loadPayments();
+            
+            // Set today's date for payment
+            document.getElementById('paymentDate').valueAsDate = new Date();
         }
         
         function logout() {
@@ -841,8 +932,12 @@
                 document.querySelectorAll('.tab')[1].classList.add('active');
                 document.getElementById('historyTab').classList.add('active');
                 loadHistory();
-            } else if (tab === 'settings') {
+            } else if (tab === 'payments') {
                 document.querySelectorAll('.tab')[2].classList.add('active');
+                document.getElementById('paymentsTab').classList.add('active');
+                loadPayments();
+            } else if (tab === 'settings') {
+                document.querySelectorAll('.tab')[3].classList.add('active');
                 document.getElementById('settingsTab').classList.add('active');
             }
         }
@@ -878,9 +973,36 @@
             switchTab('create');
         }
         
+        function calculatePartyBalance(partyName) {
+            const partyEstimates = estimates.filter(e => e.partyName === partyName);
+            const partyPayments = payments.filter(p => p.partyName === partyName);
+            
+            const totalEstimates = partyEstimates.reduce((sum, e) => sum + e.total, 0);
+            const totalPayments = partyPayments.reduce((sum, p) => sum + p.amount, 0);
+            
+            return totalEstimates - totalPayments;
+        }
+        
+        function loadPartyBalance() {
+            const partyName = document.getElementById('partyName').value.trim();
+            if (!partyName) {
+                document.getElementById('partyBalanceInfo').style.display = 'none';
+                return;
+            }
+            
+            const balance = calculatePartyBalance(partyName);
+            document.getElementById('partyBalance').textContent = '₹' + balance.toFixed(2);
+            document.getElementById('partyBalanceInfo').style.display = 'block';
+        }
+        
+        function toggleOldBalance() {
+            includeOldBalance = document.getElementById('addOldBalance').checked;
+        }
+        
         function setupAutocomplete() {
             const partyInput = document.getElementById('partyName');
             const itemInput = document.getElementById('itemName');
+            const paymentPartyInput = document.getElementById('paymentPartyName');
             
             partyInput.addEventListener('input', function() {
                 showAutocomplete(this, savedParties, 'partyAutocomplete');
@@ -888,6 +1010,10 @@
             
             itemInput.addEventListener('input', function() {
                 showAutocomplete(this, savedItems, 'itemAutocomplete');
+            });
+            
+            paymentPartyInput.addEventListener('input', function() {
+                showAutocomplete(this, savedParties, 'paymentPartyAutocomplete');
             });
         }
         
@@ -918,6 +1044,9 @@
                     input.value = match;
                     container.innerHTML = '';
                     container.style.display = 'none';
+                    if (containerId === 'partyAutocomplete') {
+                        loadPartyBalance();
+                    }
                 });
                 container.appendChild(div);
             });
@@ -992,6 +1121,8 @@
         function generateEstimate() {
             const partyName = document.getElementById('partyName').value.trim();
             const partyAddress = document.getElementById('partyAddress').value.trim();
+            const miscDesc = document.getElementById('miscDesc').value.trim();
+            const miscAmount = parseFloat(document.getElementById('miscAmount').value) || 0;
             
             if (!businessSettings.name) {
                 alert('Please set up your business details in Settings first');
@@ -1014,8 +1145,12 @@
                 localStorage.setItem('savedParties', JSON.stringify(savedParties));
             }
             
-            const subtotal = items.reduce((sum, item) => sum + item.total, 0);
-            const grandTotal = subtotal;
+            const itemsTotal = items.reduce((sum, item) => sum + item.total, 0);
+            let grandTotal = itemsTotal + miscAmount;
+            
+            const oldBalance = includeOldBalance ? calculatePartyBalance(partyName) : 0;
+            grandTotal += oldBalance;
+            
             const estimateDate = new Date().toLocaleDateString('en-IN', {day: '2-digit', month: '2-digit', year: 'numeric'});
             const dueDate = new Date(Date.now() + 14*24*60*60*1000).toLocaleDateString('en-IN', {day: '2-digit', month: '2-digit', year: 'numeric'});
             
@@ -1038,7 +1173,9 @@
                 businessPhone: businessSettings.phone,
                 businessEmail: businessSettings.email,
                 items: [...items],
-                subtotal: subtotal,
+                miscDesc: miscDesc,
+                miscAmount: miscAmount,
+                oldBalance: oldBalance,
                 total: grandTotal,
                 qrCode: qrImageData
             };
@@ -1052,6 +1189,26 @@
         function displayEstimate(estimate) {
             let customerDetails = estimate.partyName;
             if (estimate.partyAddress) customerDetails += '<br>' + estimate.partyAddress;
+            
+            let additionalCharges = '';
+            if (estimate.miscDesc && estimate.miscAmount !== 0) {
+                additionalCharges = `
+                    <div class="total-row">
+                        <span class="total-label">${estimate.miscDesc}</span>
+                        <span class="total-value">₹${estimate.miscAmount.toFixed(2)}</span>
+                    </div>
+                `;
+            }
+            
+            let oldBalanceRow = '';
+            if (estimate.oldBalance && estimate.oldBalance !== 0) {
+                oldBalanceRow = `
+                    <div class="total-row">
+                        <span class="total-label">Previous Balance</span>
+                        <span class="total-value">₹${estimate.oldBalance.toFixed(2)}</span>
+                    </div>
+                `;
+            }
             
             const estimateHTML = `
                 <div class="estimate-preview-wrapper">
@@ -1101,10 +1258,8 @@
                         
                         <div class="totals-section">
                             <div class="totals-table">
-                                <div class="total-row subtotal">
-                                    <span class="total-label">Subtotal</span>
-                                    <span class="total-value">₹${estimate.subtotal.toFixed(2)}</span>
-                                </div>
+                                ${additionalCharges}
+                                ${oldBalanceRow}
                                 <div class="total-row grand-total">
                                     <span class="total-label">Total (INR)</span>
                                     <span class="total-value">₹${estimate.total.toFixed(2)}</span>
@@ -1138,6 +1293,10 @@
                 logging: false,
                 useCORS: true,
                 allowTaint: true,
+                x: 0,
+                y: 0,
+                scrollX: 0,
+                scrollY: 0,
                 width: element.scrollWidth,
                 height: element.scrollHeight
             }).then(canvas => {
@@ -1147,6 +1306,85 @@
                 link.href = canvas.toDataURL('image/png', 1.0);
                 link.click();
             });
+        }
+        
+        function addPayment() {
+            const partyName = document.getElementById('paymentPartyName').value.trim();
+            const amount = parseFloat(document.getElementById('paymentAmount').value);
+            const date = document.getElementById('paymentDate').value;
+            const notes = document.getElementById('paymentNotes').value.trim();
+            
+            if (!partyName || !amount || !date) {
+                alert('Please fill party name, amount, and date');
+                return;
+            }
+            
+            const payment = {
+                id: Date.now(),
+                partyName: partyName,
+                amount: amount,
+                date: date,
+                notes: notes,
+                timestamp: new Date().toISOString()
+            };
+            
+            payments.unshift(payment);
+            localStorage.setItem('payments', JSON.stringify(payments));
+            
+            document.getElementById('paymentPartyName').value = '';
+            document.getElementById('paymentAmount').value = '';
+            document.getElementById('paymentNotes').value = '';
+            
+            alert('Payment added successfully!');
+            loadPayments();
+        }
+        
+        function loadPayments() {
+            const paymentsList = document.getElementById('paymentsList');
+            
+            if (payments.length === 0) {
+                paymentsList.innerHTML = '<p style="text-align:center; color:#7f8c8d; padding:40px;">No payments recorded yet.</p>';
+                return;
+            }
+            
+            // Group payments by party
+            const paymentsByParty = {};
+            payments.forEach(p => {
+                if (!paymentsByParty[p.partyName]) {
+                    paymentsByParty[p.partyName] = [];
+                }
+                paymentsByParty[p.partyName].push(p);
+            });
+            
+            let html = '<div class="form-section"><h3>Payment History</h3>';
+            
+            Object.keys(paymentsByParty).forEach(partyName => {
+                const partyPayments = paymentsByParty[partyName];
+                const totalPaid = partyPayments.reduce((sum, p) => sum + p.amount, 0);
+                const balance = calculatePartyBalance(partyName);
+                
+                html += `
+                    <div style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px; border: 1px solid #e0e0e0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <strong style="font-size: 16px; color: #2c3e50;">${partyName}</strong>
+                            <span style="color: ${balance > 0 ? '#e74c3c' : '#27ae60'}; font-weight: 600;">Balance: ₹${balance.toFixed(2)}</span>
+                        </div>
+                        <div style="font-size: 13px; color: #666;">Total Paid: ₹${totalPaid.toFixed(2)}</div>
+                        <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8e8e8;">
+                            ${partyPayments.map(p => `
+                                <div style="display: flex; justify-content: space-between; padding: 5px 0; font-size: 12px;">
+                                    <span>${new Date(p.date).toLocaleDateString('en-IN')}</span>
+                                    <span style="font-weight: 600;">₹${p.amount.toFixed(2)}</span>
+                                    ${p.notes ? `<span style="color: #999;">${p.notes}</span>` : ''}
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            paymentsList.innerHTML = html;
         }
         
         function loadHistory() {
@@ -1189,6 +1427,8 @@
             
             document.getElementById('partyName').value = estimate.partyName;
             document.getElementById('partyAddress').value = estimate.partyAddress || '';
+            document.getElementById('miscDesc').value = estimate.miscDesc || '';
+            document.getElementById('miscAmount').value = estimate.miscAmount || '';
             items = [...estimate.items];
             qrImageData = estimate.qrCode;
             
@@ -1198,6 +1438,7 @@
             }
             
             updateItemsTable();
+            loadPartyBalance();
             
             estimates = estimates.filter(e => e.id !== id);
             estimateCounter--;
