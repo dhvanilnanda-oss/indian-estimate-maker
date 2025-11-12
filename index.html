@@ -252,6 +252,12 @@
             background: #e67e22;
         }
         
+        .btn-small {
+            padding: 5px 10px;
+            font-size: 11px;
+            margin: 0 3px;
+        }
+        
         .items-table {
             width: 100%;
             border-collapse: collapse;
@@ -584,6 +590,28 @@
         
         .checkbox-group input[type="checkbox"] {
             width: auto;
+        }
+        
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .payment-item:last-child {
+            border-bottom: none;
+        }
+        
+        .payment-details {
+            flex: 1;
+        }
+        
+        .payment-actions {
+            display: flex;
+            gap: 5px;
         }
         
         @media (max-width: 768px) {
@@ -1339,6 +1367,34 @@
             loadPayments();
         }
         
+        function editPayment(id) {
+            const payment = payments.find(p => p.id === id);
+            if (!payment) return;
+            
+            const newAmount = prompt('Enter new payment amount:', payment.amount);
+            if (newAmount === null) return;
+            
+            const amount = parseFloat(newAmount);
+            if (isNaN(amount) || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            payment.amount = amount;
+            localStorage.setItem('payments', JSON.stringify(payments));
+            loadPayments();
+            alert('Payment updated successfully!');
+        }
+        
+        function deletePayment(id) {
+            if (!confirm('Are you sure you want to delete this payment?')) return;
+            
+            payments = payments.filter(p => p.id !== id);
+            localStorage.setItem('payments', JSON.stringify(payments));
+            loadPayments();
+            alert('Payment deleted successfully!');
+        }
+        
         function loadPayments() {
             const paymentsList = document.getElementById('paymentsList');
             
@@ -1372,10 +1428,18 @@
                         <div style="font-size: 13px; color: #666;">Total Paid: ₹${totalPaid.toFixed(2)}</div>
                         <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #e8e8e8;">
                             ${partyPayments.map(p => `
-                                <div style="display: flex; justify-content: space-between; padding: 5px 0; font-size: 12px;">
-                                    <span>${new Date(p.date).toLocaleDateString('en-IN')}</span>
-                                    <span style="font-weight: 600;">₹${p.amount.toFixed(2)}</span>
-                                    ${p.notes ? `<span style="color: #999;">${p.notes}</span>` : ''}
+                                <div class="payment-item">
+                                    <div class="payment-details">
+                                        <div style="display: flex; gap: 15px; align-items: center;">
+                                            <span style="color: #666;">${new Date(p.date).toLocaleDateString('en-IN')}</span>
+                                            <span style="font-weight: 600; color: #27ae60;">₹${p.amount.toFixed(2)}</span>
+                                            ${p.notes ? `<span style="color: #999; font-style: italic;">${p.notes}</span>` : ''}
+                                        </div>
+                                    </div>
+                                    <div class="payment-actions">
+                                        <button class="btn btn-warning btn-small" onclick="editPayment(${p.id})">Edit</button>
+                                        <button class="btn btn-danger btn-small" onclick="deletePayment(${p.id})">Delete</button>
+                                    </div>
                                 </div>
                             `).join('')}
                         </div>
